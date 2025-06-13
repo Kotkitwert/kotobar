@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Приюты для котят в Москве</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#FF6B6B", secondary: "#4ECDC4" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      }
+      .hero-bg {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=adorable%20kittens%20playing%20together%20in%20a%20cozy%20shelter%20environment%2C%20soft%20natural%20lighting%2C%20warm%20atmosphere%2C%20multiple%20kittens%20of%20different%20colors%20and%20patterns%2C%20some%20sleeping%2C%20some%20playing%20with%20toys%2C%20comfortable%20bedding%2C%20clean%20environment&width=1920&height=1080&seq=1&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      }
+      .shelter-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .shelter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .modal {
+      transition: opacity 0.3s ease;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #FF6B6B;
+      border-radius: 50%;
+      cursor: pointer;
+      }
+      .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      }
+      .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      }
+      .slide {
+      min-width: 100%;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <div id="top"></div>
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-3xl font-['Pacifico'] text-primary">КотоБар</a>
+        <nav class="hidden md:flex space-x-8">
+          <a
+            href="#top"
+            class="text-gray-700 hover:text-primary font-medium transition duration-300"
+            >Главная</a
+          >
+          <a
+            href="#shelters"
+            class="text-gray-700 hover:text-primary font-medium transition duration-300"
+            >Приюты</a
+          >
+          <a
+            href="#help"
+            class="text-gray-700 hover:text-primary font-medium transition duration-300"
+            >Как помочь</a
+          >
+          <a
+            href="#contacts"
+            class="text-gray-700 hover:text-primary font-medium transition duration-300"
+            >Контакты</a
+          >
+        </nav>
+        <button class="md:hidden w-10 h-10 flex items-center justify-center">
+          <i class="ri-menu-line text-xl"></i>
+        </button>
+      </div>
+    </header>
+    <section class="hero-bg py-20 md:py-32 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          Приюты для котят в Москве
+        </h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">
+          Найдите пушистого друга и подарите ему дом. Узнайте о лучших приютах
+          для котят в Москве.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#shelters"
+            class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 rounded-button font-medium text-lg whitespace-nowrap inline-block text-center"
+            >Найти котенка</a
+          >
+          <a
+            href="#help"
+            class="bg-white hover:bg-opacity-90 text-primary px-8 py-3 rounded-button font-medium text-lg whitespace-nowrap inline-block text-center"
+            >Как помочь приютам</a
+          >
+        </div>
+      </div>
+    </section>
+    <section id="shelters" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">
+          Лучшие приюты для котят
+        </h2>
+        <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+          Познакомьтесь с проверенными приютами Москвы, где котята ждут своих
+          новых хозяев. Каждый приют обеспечивает заботу, любовь и ветеринарное
+          обслуживание.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Приют 1 -->
+          <div
+            id="shelter-1"
+            class="shelter-card bg-white rounded-lg shadow-md overflow-hidden"
+            data-id="1"
+          >
+            <div class="slider-container h-64">
+              <div class="slider h-full" id="slider-1">
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=cozy%20cat%20shelter%20interior%20with%20kittens%2C%20clean%20environment%2C%20bright%20and%20warm%20atmosphere%2C%20multiple%20kittens%20playing%2C%20soft%20bedding%2C%20natural%20light%20coming%20through%20windows%2C%20modern%20facility&width=600&height=400&seq=2&orientation=landscape"
+                    alt="Муркоша"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=adorable%20kittens%20of%20different%20colors%20playing%20together%20in%20a%20shelter%2C%20clean%20environment%2C%20toys%20scattered%20around%2C%20comfortable%20beds%2C%20bright%20room&width=600&height=400&seq=3&orientation=landscape"
+                    alt="Котята в Муркоше"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=volunteer%20caring%20for%20kittens%20in%20a%20shelter%2C%20feeding%20time%2C%20clean%20modern%20facility%2C%20multiple%20kittens%20gathered%20around%2C%20bright%20and%20warm%20atmosphere&width=600&height=400&seq=4&orientation=landscape"
+                    alt="Волонтеры Муркоши"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-1', 'prev')"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-1', 'next')"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Муркоша</h3>
+              <p class="text-gray-600 mb-4">
+                Один из крупнейших приютов Москвы с более чем 150 котятами
+                разных возрастов и окрасов. Расположен в районе Строгино.
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <span
+                  class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                  >Котят: 45</span
+                >
+                <span class="text-gray-500 text-sm">Строгино</span>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-opacity-90 text-white py-2 rounded-button font-medium whitespace-nowrap show-modal-btn"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
+          <!-- Приют 2 -->
+          <div
+            id="shelter-2"
+            class="shelter-card bg-white rounded-lg shadow-md overflow-hidden"
+            data-id="2"
+          >
+            <div class="slider-container h-64">
+              <div class="slider h-full" id="slider-2">
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=modern%20cat%20shelter%20with%20playful%20kittens%2C%20bright%20and%20clean%20environment%2C%20comfortable%20cat%20trees%2C%20toys%2C%20multiple%20kittens%20of%20different%20colors%2C%20spacious%20room&width=600&height=400&seq=5&orientation=landscape"
+                    alt="Кото-Мир"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=kittens%20being%20examined%20by%20veterinarian%20in%20a%20shelter%2C%20clean%20medical%20room%2C%20caring%20staff%2C%20professional%20equipment%2C%20gentle%20handling%20of%20kittens&width=600&height=400&seq=6&orientation=landscape"
+                    alt="Ветеринар в Кото-Мире"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=people%20adopting%20kittens%20from%20shelter%2C%20happy%20moment%2C%20family%20choosing%20a%20kitten%2C%20shelter%20staff%20helping%2C%20bright%20and%20clean%20environment&width=600&height=400&seq=7&orientation=landscape"
+                    alt="Усыновление в Кото-Мире"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-2', 'prev')"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-2', 'next')"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Кото-Мир</h3>
+              <p class="text-gray-600 mb-4">
+                Современный приют с профессиональным ветеринарным обслуживанием.
+                Специализируется на спасении котят с улицы и их социализации.
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <span
+                  class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                  >Котят: 38</span
+                >
+                <span class="text-gray-500 text-sm">Сокольники</span>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-opacity-90 text-white py-2 rounded-button font-medium whitespace-nowrap show-modal-btn"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
+          <!-- Приют 3 -->
+          <div
+            id="shelter-3"
+            class="shelter-card bg-white rounded-lg shadow-md overflow-hidden"
+            data-id="3"
+          >
+            <div class="slider-container h-64">
+              <div class="slider h-full" id="slider-3">
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=homely%20cat%20shelter%20with%20vintage%20furniture%2C%20cozy%20atmosphere%2C%20multiple%20kittens%20lounging%20on%20soft%20pillows%2C%20warm%20lighting%2C%20wooden%20elements%2C%20clean%20environment&width=600&height=400&seq=8&orientation=landscape"
+                    alt="Усатый Ангел"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=kittens%20eating%20from%20small%20bowls%20in%20a%20shelter%2C%20feeding%20time%2C%20clean%20area%2C%20multiple%20kittens%20of%20different%20colors%2C%20careful%20arrangement%2C%20bright%20room&width=600&height=400&seq=9&orientation=landscape"
+                    alt="Кормление в Усатом Ангеле"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=volunteer%20playing%20with%20kittens%20in%20a%20shelter%2C%20interactive%20toys%2C%20engaged%20kittens%2C%20bright%20and%20clean%20room%2C%20joyful%20atmosphere&width=600&height=400&seq=10&orientation=landscape"
+                    alt="Игры в Усатом Ангеле"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-3', 'prev')"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-3', 'next')"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Усатый Ангел</h3>
+              <p class="text-gray-600 mb-4">
+                Семейный приют с домашней атмосферой. Здесь котята получают
+                много внимания и любви от волонтеров, что помогает им быстрее
+                адаптироваться.
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <span
+                  class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                  >Котят: 27</span
+                >
+                <span class="text-gray-500 text-sm">Измайлово</span>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-opacity-90 text-white py-2 rounded-button font-medium whitespace-nowrap show-modal-btn"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
+          <!-- Приют 4 -->
+          <div
+            id="shelter-4"
+            class="shelter-card bg-white rounded-lg shadow-md overflow-hidden"
+            data-id="4"
+          >
+            <div class="slider-container h-64">
+              <div class="slider h-full" id="slider-4">
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=modern%20minimalist%20cat%20shelter%20with%20sleek%20design%2C%20bright%20white%20interior%2C%20multiple%20cat%20trees%20and%20walkways%2C%20several%20kittens%20playing%2C%20clean%20and%20organized%20space&width=600&height=400&seq=11&orientation=landscape"
+                    alt="Хвостатый Рай"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=kittens%20sleeping%20in%20comfortable%20beds%20in%20a%20shelter%2C%20peaceful%20atmosphere%2C%20soft%20lighting%2C%20multiple%20kittens%20of%20different%20colors%20cuddled%20together%2C%20clean%20environment&width=600&height=400&seq=12&orientation=landscape"
+                    alt="Отдых в Хвостатом Рае"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=shelter%20staff%20training%20kittens%2C%20socialization%20process%2C%20interactive%20play%2C%20multiple%20kittens%20learning%20to%20interact%20with%20humans%2C%20bright%20and%20clean%20environment&width=600&height=400&seq=13&orientation=landscape"
+                    alt="Тренировка в Хвостатом Рае"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-4', 'prev')"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-4', 'next')"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Хвостатый Рай</h3>
+              <p class="text-gray-600 mb-4">
+                Инновационный приют с современным оборудованием и просторными
+                вольерами. Особое внимание уделяется социализации и здоровью
+                котят.
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <span
+                  class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                  >Котят: 32</span
+                >
+                <span class="text-gray-500 text-sm">Марьино</span>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-opacity-90 text-white py-2 rounded-button font-medium whitespace-nowrap show-modal-btn"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
+          <!-- Приют 5 -->
+          <div
+            id="shelter-5"
+            class="shelter-card bg-white rounded-lg shadow-md overflow-hidden"
+            data-id="5"
+          >
+            <div class="slider-container h-64">
+              <div class="slider h-full" id="slider-5">
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=rustic%20cat%20shelter%20with%20wooden%20elements%2C%20warm%20atmosphere%2C%20multiple%20kittens%20playing%20on%20natural%20materials%2C%20soft%20bedding%2C%20clean%20environment%2C%20homely%20feel&width=600&height=400&seq=14&orientation=landscape"
+                    alt="Котодом"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=outdoor%20enclosed%20area%20for%20kittens%20in%20a%20shelter%2C%20safe%20space%20with%20grass%20and%20small%20trees%2C%20multiple%20kittens%20exploring%2C%20sunny%20day%2C%20clean%20environment&width=600&height=400&seq=15&orientation=landscape"
+                    alt="Прогулка в Котодоме"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="slide">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=kittens%20interacting%20with%20potential%20adopters%20in%20a%20shelter%2C%20meet%20and%20greet%20session%2C%20comfortable%20seating%20area%2C%20multiple%20kittens%20being%20held%2C%20bright%20and%20clean%20environment&width=600&height=400&seq=16&orientation=landscape"
+                    alt="Знакомство в Котодоме"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-5', 'prev')"
+              >
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center"
+                onclick="moveSlider('slider-5', 'next')"
+              >
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Котодом</h3>
+              <p class="text-gray-600 mb-4">
+                Уютный приют с индивидуальным подходом к каждому котенку. Здесь
+                проводят тщательный отбор новых хозяев, чтобы обеспечить
+                счастливое будущее питомцам.
+              </p>
+              <div class="flex justify-between items-center mb-4">
+                <span
+                  class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm font-medium"
+                  >Котят: 23</span
+                >
+                <span class="text-gray-500 text-sm">Бутово</span>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-opacity-90 text-white py-2 rounded-button font-medium whitespace-nowrap show-modal-btn"
+              >
+                Подробнее
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="help" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">
+          Как вы можете помочь
+        </h2>
+        <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+          Есть много способов помочь котятам в приютах, даже если вы не можете
+          взять питомца домой. Ваша поддержка очень важна!
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto"
+            >
+              <i class="ri-heart-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-3">Стать волонтером</h3>
+            <p class="text-gray-600 text-center">
+              Помогите с уходом за котятами, социализацией и другими
+              повседневными задачами в приюте.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto"
+            >
+              <i class="ri-gift-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-3">
+              Сделать пожертвование
+            </h3>
+            <p class="text-gray-600 text-center">
+              Финансовая поддержка помогает приютам обеспечивать котят едой,
+              лекарствами и всем необходимым.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto"
+            >
+              <i class="ri-home-heart-line text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-3">Временный дом</h3>
+            <p class="text-gray-600 text-center">
+              Станьте временным опекуном для котенка, пока он не найдет
+              постоянный дом.
+            </p>
+          </div>
+        </div>
+        <div class="mt-12 bg-white p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-bold mb-6 text-center">
+            Что нужно приютам прямо сейчас
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-lg font-semibold mb-4 flex items-center">
+                <i class="ri-checkbox-circle-line text-primary mr-2"></i>
+                Материальная помощь
+              </h4>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Корм для котят (сухой и влажный)</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Наполнитель для туалетов</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Игрушки и когтеточки</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Лежанки и домики</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Медикаменты и витамины</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold mb-4 flex items-center">
+                <i class="ri-user-heart-line text-primary mr-2"></i>
+                Волонтерская помощь
+              </h4>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Уход за котятами и уборка</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Транспортировка котят к ветеринару</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Фотографирование котят для сайта</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Помощь в проведении мероприятий</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-arrow-right-s-line text-primary mt-1 mr-2"></i>
+                  <span>Распространение информации в соцсетях</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-4">Карта приютов</h2>
+        <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">
+          Найдите ближайший к вам приют для котят в Москве
+        </p>
+        <div
+          class="rounded-lg overflow-hidden shadow-md h-[500px] relative"
+          style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"
+        >
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg max-w-md"
+            >
+              <h3 class="text-xl font-bold mb-4">Выберите район</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn active"
+                  data-district="all"
+                >
+                  Все районы
+                </button>
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn"
+                  data-district="Строгино"
+                >
+                  Строгино
+                </button>
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn"
+                  data-district="Сокольники"
+                >
+                  Сокольники
+                </button>
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn"
+                  data-district="Измайлово"
+                >
+                  Измайлово
+                </button>
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn"
+                  data-district="Марьино"
+                >
+                  Марьино
+                </button>
+                <button
+                  class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap district-btn"
+                  data-district="Бутово"
+                >
+                  Бутово
+                </button>
+              </div>
+              <p class="text-gray-600 text-sm">
+                Нажмите на район, чтобы увидеть приюты в этой области. Для
+                получения точного адреса и контактов, нажмите "Подробнее" в
+                карточке приюта.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contacts" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-3xl font-bold mb-6">Свяжитесь с нами</h2>
+            <p class="text-gray-600 mb-8">
+              Если у вас есть вопросы о приютах или процессе усыновления
+              котенка, заполните форму, и мы свяжемся с вами в ближайшее время.
+            </p>
+            <form class="space-y-6">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Ваше имя</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Иван Иванов"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Электронная почта</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="example@mail.ru"
+                />
+              </div>
+              <div>
+                <label
+                  for="phone"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Телефон</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="+7 (___) ___-__-__"
+                />
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Сообщение</label
+                >
+                <textarea
+                  id="message"
+                  rows="4"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Ваш вопрос или комментарий"
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="bg-primary hover:bg-opacity-90 text-white px-6 py-3 rounded-button font-medium whitespace-nowrap"
+                >
+                  Отправить сообщение
+                </button>
+              </div>
+            </form>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold mb-6">Полезные ссылки</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-4">Приюты-партнеры</h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a
+                      href="https://www.murkоsha.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-home-heart-line text-primary"></i>
+                      </div>
+                      <span>Муркоша</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.kotomir.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-home-heart-line text-primary"></i>
+                      </div>
+                      <span>Кото-Мир</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.usatiy-angel.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-home-heart-line text-primary"></i>
+                      </div>
+                      <span>Усатый Ангел</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.hvostatiyrаy.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-home-heart-line text-primary"></i>
+                      </div>
+                      <span>Хвостатый Рай</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.kotodom.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-home-heart-line text-primary"></i>
+                      </div>
+                      <span>Котодом</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-4">Рекомендуемые корма</h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a
+                      href="https://www.royalcanin.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-shopping-basket-2-line text-primary"></i>
+                      </div>
+                      <span>Royal Canin</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.proplan.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-shopping-basket-2-line text-primary"></i>
+                      </div>
+                      <span>Pro Plan</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.hillspet.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-shopping-basket-2-line text-primary"></i>
+                      </div>
+                      <span>Hill's</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.acana.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-shopping-basket-2-line text-primary"></i>
+                      </div>
+                      <span>Acana</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.monge.ru"
+                      target="_blank"
+                      class="flex items-center text-gray-700 hover:text-primary"
+                    >
+                      <div
+                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2"
+                      >
+                        <i class="ri-shopping-basket-2-line text-primary"></i>
+                      </div>
+                      <span>Monge</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-bold mb-4">Наши контакты</h3>
+              <ul class="space-y-4">
+                <li class="flex items-start">
+                  <div
+                    class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3 mt-1"
+                  >
+                    <i class="ri-map-pin-line text-primary"></i>
+                  </div>
+                  <span class="text-gray-700"
+                    >г. Москва, ул. Котиковая, д. 15, офис 101</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3"
+                  >
+                    <i class="ri-phone-line text-primary"></i>
+                  </div>
+                  <span class="text-gray-700">+7 (495) 123-45-67</span>
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3"
+                  >
+                    <i class="ri-mail-line text-primary"></i>
+                  </div>
+                  <span class="text-gray-700">info@kotodom.ru</span>
+                </li>
+              </ul>
+              <div class="mt-6">
+                <h4 class="font-medium text-gray-700 mb-3">
+                  Мы в социальных сетях:
+                </h4>
+                <div class="flex space-x-4">
+                  <a
+                    href="https://vk.com/kotobar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300"
+                  >
+                    <i class="ri-vk-line text-primary"></i>
+                  </a>
+                  <a
+                    href="https://t.me/kotobar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300"
+                  >
+                    <i class="ri-telegram-line text-primary"></i>
+                  </a>
+                  <a
+                    href="https://instagram.com/kotobar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300"
+                  >
+                    <i class="ri-instagram-line text-primary"></i>
+                  </a>
+                  <a
+                    href="https://youtube.com/kotobar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300"
+                  >
+                    <i class="ri-youtube-line text-primary"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="text-3xl font-['Pacifico'] text-white"
+              >КотоБар</a
+            >
+            <p class="mt-2 text-gray-400">
+              Помогаем котятам найти дом с 2015 года
+            </p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="#top"
+              class="text-gray-400 hover:text-white transition duration-300"
+              >Главная</a
+            >
+            <a
+              href="#shelters"
+              class="text-gray-400 hover:text-white transition duration-300"
+              >Приюты</a
+            >
+            <a
+              href="#help"
+              class="text-gray-400 hover:text-white transition duration-300"
+              >Как помочь</a
+            >
+            <a
+              href="#contacts"
+              class="text-gray-400 hover:text-white transition duration-300"
+              >Контакты</a
+            >
+            <a
+              href="/privacy-policy"
+              class="text-gray-400 hover:text-white transition duration-300"
+              >Политика конфиденциальности</a
+            >
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500"
+        >
+          <p>© 2025 КотоБар. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Модальное окно -->
+    <div
+      id="shelterModal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden modal"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="p-6 md:p-8">
+          <div class="flex justify-between items-start mb-6">
+            <h2 class="text-2xl font-bold" id="modalTitle">Название приюта</h2>
+            <button
+              class="text-gray-500 hover:text-gray-700 focus:outline-none"
+              id="closeModal"
+            >
+              <i class="ri-close-line text-2xl"></i>
+            </button>
+          </div>
+          <div id="modalContent">
+            <!-- Контент будет добавлен динамически -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="sliderScript">
+      function moveSlider(sliderId, direction) {
+        const slider = document.getElementById(sliderId);
+        const slides = slider.querySelectorAll(".slide");
+        const slideWidth = slides[0].offsetWidth;
+        let currentPosition = parseInt(
+          slider.style.transform.replace("translateX(", "").replace("px)", "") || 0,
+        );
+        if (direction === "next") {
+          if (Math.abs(currentPosition) < (slides.length - 1) * slideWidth) {
+            currentPosition -= slideWidth;
+          } else {
+            currentPosition = 0;
+          }
+        } else {
+          if (currentPosition < 0) {
+            currentPosition += slideWidth;
+          } else {
+            currentPosition = -((slides.length - 1) * slideWidth);
+          }
+        }
+        slider.style.transform = `translateX(${currentPosition}px)`;
+      }
+    </script>
+    <script id="modalScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("shelterModal");
+        const closeModal = document.getElementById("closeModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalContent = document.getElementById("modalContent");
+        const showModalBtns = document.querySelectorAll(".show-modal-btn");
+        // Данные о приютах
+        const shelterData = {
+          1: {
+            name: "Муркоша",
+            fullDescription:
+              'Приют "Муркоша" — один из крупнейших приютов Москвы, где проживает более 150 котят разных возрастов и окрасов. Основан в 2010 году группой волонтеров и за это время нашел дом для более чем 3000 котят. В приюте работают профессиональные ветеринары, которые следят за здоровьем каждого питомца. Все котята проходят обязательную вакцинацию и стерилизацию перед передачей новым хозяевам.',
+            address: "г. Москва, Строгинский бульвар, д. 14",
+            phone: "+7 (495) 123-45-67",
+            phoneLink: "+74951234567",
+            email: "info@murkosha.ru",
+            workingHours: "Ежедневно с 10:00 до 20:00",
+            requirements: [
+              "Возраст от 21 года",
+              "Наличие паспорта",
+              "Отсутствие аллергии на кошек",
+              "Согласие на домашний визит волонтера",
+              "Подписание договора об ответственном содержании животного",
+            ],
+            district: "Строгино",
+          },
+          2: {
+            name: "Кото-Мир",
+            fullDescription:
+              'Приют "Кото-Мир" специализируется на спасении котят с улицы и их социализации. Основан в 2015 году и имеет современное оборудование для лечения и реабилитации животных. В приюте работает команда опытных ветеринаров и зоопсихологов, которые помогают котятам адаптироваться к жизни с людьми. Особое внимание уделяется социализации диких котят и лечению тяжелобольных животных.',
+            address: "г. Москва, ул. Сокольническая площадь, д. 4А",
+            phone: "+7 (495) 987-65-43",
+            phoneLink: "+74959876543",
+            email: "help@kotomir.ru",
+            workingHours:
+              "Вторник-воскресенье с 12:00 до 19:00, понедельник - выходной",
+            requirements: [
+              "Возраст от 18 лет",
+              "Постоянное место жительства",
+              "Готовность к ответственному содержанию животного",
+              "Отсутствие частых переездов",
+              "Финансовая стабильность для содержания питомца",
+            ],
+            district: "Сокольники",
+          },
+          3: {
+            name: "Усатый Ангел",
+            fullDescription:
+              'Семейный приют "Усатый Ангел" создан в 2018 году семьей Ивановых, которые решили посвятить свою жизнь спасению бездомных котят. В приюте поддерживается домашняя атмосфера, что помогает котятам быстрее адаптироваться к жизни в семье. Все котята живут в свободном выгуле, имеют доступ к игровым комплексам и получают ежедневную порцию внимания и ласки от волонтеров.',
+            address: "г. Москва, Измайловский проспект, д. 73Б",
+            phone: "+7 (495) 234-56-78",
+            phoneLink: "+74952345678",
+            email: "contact@usatiy-angel.ru",
+            workingHours: "Ежедневно с 11:00 до 18:00",
+            requirements: [
+              "Готовность к длительному содержанию животного",
+              "Наличие сеток на окнах",
+              "Отсутствие маленьких детей для котят с особенностями характера",
+              "Предварительное знакомство с котенком",
+              "Возможность регулярных отчетов о жизни питомца в первые месяцы",
+            ],
+            district: "Измайлово",
+          },
+          4: {
+            name: "Хвостатый Рай",
+            fullDescription:
+              'Инновационный приют "Хвостатый Рай" открылся в 2020 году и отличается современным подходом к содержанию котят. Здесь созданы просторные вольеры с многоуровневыми игровыми комплексами, отдельные зоны для котят разного возраста и темперамента. В приюте работает команда профессионалов, включая ветеринаров, зоопсихологов и тренеров. Особое внимание уделяется ранней социализации и подготовке котят к жизни в семье.',
+            address: "г. Москва, ул. Марьинский Парк, д. 39",
+            phone: "+7 (495) 345-67-89",
+            phoneLink: "+74953456789",
+            email: "info@hvostatiyrаy.ru",
+            workingHours:
+              "Среда-воскресенье с 10:00 до 19:00, понедельник-вторник - выходные",
+            requirements: [
+              "Интервью с потенциальным хозяином",
+              "Проверка условий проживания",
+              "Готовность к регулярным ветеринарным осмотрам",
+              "Понимание особенностей выбранной породы или характера котенка",
+              "Подписание договора об ответственном содержании",
+            ],
+            district: "Марьино",
+          },
+          5: {
+            name: "Котодом",
+            fullDescription:
+              'Уютный приют "Котодом" основан в 2017 году группой энтузиастов, объединенных любовью к кошкам. Здесь каждому котенку уделяется индивидуальное внимание, разрабатывается персональный план социализации и лечения. Приют отличается тщательным отбором новых хозяев — процесс усыновления включает несколько этапов, включая предварительное знакомство, собеседование и проверку условий проживания. Такой подход позволяет минимизировать возвраты и обеспечить котятам счастливое будущее.',
+            address: "г. Москва, ул. Бутовская, д. 7к2",
+            phone: "+7 (495) 456-78-90",
+            phoneLink: "+74954567890",
+            email: "adopt@kotodom.ru",
+            workingHours:
+              "Четверг-воскресенье с 12:00 до 20:00, понедельник-среда - по предварительной записи",
+            requirements: [
+              "Возраст от 21 года",
+              "Стабильный доход",
+              "Постоянное место жительства",
+              "Согласие всех членов семьи на появление питомца",
+              "Готовность к адаптационному периоду",
+            ],
+            district: "Бутово",
+          },
+        };
+        // Открытие модального окна
+        showModalBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const shelterId = this.closest(".shelter-card").dataset.id;
+            const shelter = shelterData[shelterId];
+            modalTitle.textContent = shelter.name;
+            // Формирование контента модального окна
+            modalContent.innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div>
+      <div class="slider-container h-64 mb-4 rounded-lg overflow-hidden">
+      <div class="slider h-full" id="modal-slider-${shelterId}">
+      <div class="slide">
+      <img src="${document.querySelector(`#slider-${shelterId} .slide:nth-child(1) img`).src}" alt="${shelter.name}" class="w-full h-full object-cover">
+      </div>
+      <div class="slide">
+      <img src="${document.querySelector(`#slider-${shelterId} .slide:nth-child(2) img`).src}" alt="${shelter.name}" class="w-full h-full object-cover">
+      </div>
+      <div class="slide">
+      <img src="${document.querySelector(`#slider-${shelterId} .slide:nth-child(3) img`).src}" alt="${shelter.name}" class="w-full h-full object-cover">
+      </div>
+      </div>
+      <button class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center" onclick="moveSlider('modal-slider-${shelterId}', 'prev')">
+      <i class="ri-arrow-left-s-line"></i>
+      </button>
+      <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 w-8 h-8 rounded-full flex items-center justify-center" onclick="moveSlider('modal-slider-${shelterId}', 'next')">
+      <i class="ri-arrow-right-s-line"></i>
+      </button>
+      </div>
+      <div class="bg-gray-50 p-4 rounded-lg">
+      <h3 class="font-bold text-lg mb-3">Контактная информация</h3>
+      <ul class="space-y-2">
+      <li class="flex items-start">
+      <i class="ri-map-pin-line text-primary mr-2 mt-1"></i>
+      <span>${shelter.address}</span>
+      </li>
+      <li class="flex items-start">
+      <i class="ri-phone-line text-primary mr-2 mt-1"></i>
+      <span>${shelter.phone}</span>
+      </li>
+      <li class="flex items-start">
+      <i class="ri-mail-line text-primary mr-2 mt-1"></i>
+      <span>${shelter.email}</span>
+      </li>
+      <li class="flex items-start">
+      <i class="ri-time-line text-primary mr-2 mt-1"></i>
+      <span>${shelter.workingHours}</span>
+      </li>
+      </ul>
+      </div>
+      </div>
+      <div>
+      <h3 class="font-bold text-lg mb-3">О приюте</h3>
+      <p class="text-gray-700 mb-6">${shelter.fullDescription}</p>
+      <h3 class="font-bold text-lg mb-3">Требования к усыновителям</h3>
+      <ul class="space-y-2 mb-6">
+      ${shelter.requirements
+        .map(
+          (req) => `
+      <li class="flex items-start">
+      <i class="ri-check-line text-primary mr-2 mt-1"></i>
+      <span>${req}</span>
+      </li>
+      `,
+        )
+        .join("")}
+      </ul>
+      <div class="flex flex-col sm:flex-row gap-4">
+      <a href="tel:+74951234567" class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 rounded-button font-medium text-center whitespace-nowrap">
+      <i class="ri-phone-line mr-2"></i>+7 (495) 123-45-67
+      </a>
+      <a href="mailto:${shelter.email}" class="bg-white border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-button font-medium text-center whitespace-nowrap">
+      <i class="ri-mail-line mr-2"></i> Написать
+      </a>
+      </div>
+      </div>
+      </div>
+      <div class="border-t border-gray-200 pt-6">
+      <h3 class="font-bold text-lg mb-4">Котята, ждущие дома</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div class="bg-gray-50 rounded-lg overflow-hidden">
+      <img src="https://readdy.ai/api/search-image?query=cute%20tabby%20kitten%20with%20big%20eyes%20looking%20at%20camera%2C%20soft%20fur%2C%20innocent%20expression%2C%20clean%20background&width=300&height=300&seq=17&orientation=squarish" alt="Котенок 1" class="w-full h-40 object-cover">
+      <div class="p-3">
+      <h4 class="font-semibold">Мурзик</h4>
+      <p class="text-sm text-gray-600">3 месяца, мальчик</p>
+      </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg overflow-hidden">
+      <img src="https://readdy.ai/api/search-image?query=fluffy%20white%20kitten%20with%20blue%20eyes%2C%20soft%20fur%2C%20playful%20pose%2C%20clean%20background&width=300&height=300&seq=18&orientation=squarish" alt="Котенок 2" class="w-full h-40 object-cover">
+      <div class="p-3">
+      <h4 class="font-semibold">Снежок</h4>
+      <p class="text-sm text-gray-600">2 месяца, мальчик</p>
+      </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg overflow-hidden">
+      <img src="https://readdy.ai/api/search-image?query=black%20and%20white%20tuxedo%20kitten%2C%20bright%20green%20eyes%2C%20elegant%20pose%2C%20clean%20background&width=300&height=300&seq=19&orientation=squarish" alt="Котенок 3" class="w-full h-40 object-cover">
+      <div class="p-3">
+      <h4 class="font-semibold">Маркиз</h4>
+      <p class="text-sm text-gray-600">4 месяца, мальчик</p>
+      </div>
+      </div>
+      <div class="bg-gray-50 rounded-lg overflow-hidden">
+      <img src="https://readdy.ai/api/search-image?query=ginger%20kitten%20with%20white%20paws%2C%20amber%20eyes%2C%20playful%20expression%2C%20clean%20background&width=300&height=300&seq=20&orientation=squarish" alt="Котенок 4" class="w-full h-40 object-cover">
+      <div class="p-3">
+      <h4 class="font-semibold">Рыжик</h4>
+      <p class="text-sm text-gray-600">2.5 месяца, мальчик</p>
+      </div>
+      </div>
+      </div>
+      <div class="mt-6 text-center">
+      <button class="bg-primary hover:bg-opacity-90 text-white px-8 py-2 rounded-button font-medium whitespace-nowrap">Посмотреть всех котят</button>
+      </div>
+      </div>
+      `;
+            modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+          });
+        });
+        // Закрытие модального окна
+        closeModal.addEventListener("click", function () {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "";
+        });
+        // Закрытие модального окна при клике вне его содержимого
+        modal.addEventListener("click", function (e) {
+          if (e.target === modal) {
+            modal.classList.add("hidden");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+    </script>
+    <script id="filterScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const districtButtons = document.querySelectorAll(".district-btn");
+        const shelterCards = document.querySelectorAll('[id^="shelter-"]');
+        function updateButtonStyles(activeButton) {
+          districtButtons.forEach((btn) => {
+            btn.classList.remove("bg-primary", "text-white", "active");
+            btn.classList.add("bg-gray-100", "hover:bg-gray-200");
+          });
+          activeButton.classList.add("bg-primary", "text-white", "active");
+          activeButton.classList.remove("bg-gray-100", "hover:bg-gray-200");
+        }
+        function filterShelters(selectedDistrict) {
+          const shelterDistricts = {
+            "shelter-1": "Строгино",
+            "shelter-2": "Сокольники",
+            "shelter-3": "Измайлово",
+            "shelter-4": "Марьино",
+            "shelter-5": "Бутово",
+          };
+          shelterCards.forEach((card) => {
+            const shelterDistrict = shelterDistricts[card.id];
+            const shouldDisplay =
+              selectedDistrict === "all" || shelterDistrict === selectedDistrict;
+            card.style.display = shouldDisplay ? "block" : "none";
+          });
+        }
+        districtButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            updateButtonStyles(this);
+            filterShelters(this.dataset.district);
+          });
+        });
+      });
+    </script>
+    <!-- Chat Widget -->
+    <div id="chatWidget" class="fixed bottom-6 right-6 z-50">
+      <!-- Chat Button -->
+      <button
+        id="chatButton"
+        class="bg-primary hover:bg-opacity-90 text-white p-4 rounded-full shadow-lg flex items-center justify-center"
+      >
+        <i class="ri-message-3-line text-2xl"></i>
+      </button>
+      <!-- Chat Window -->
+      <div
+        id="chatWindow"
+        class="hidden absolute bottom-16 right-0 w-[360px] bg-white rounded-lg shadow-xl overflow-hidden"
+      >
+        <!-- Chat Header -->
+        <div class="bg-primary p-4 text-white">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3"
+              >
+                <i class="ri-customer-service-2-line text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold">Онлайн-консультант</h3>
+                <p class="text-sm opacity-90">
+                  Обычно отвечаем в течение 5 минут
+                </p>
+              </div>
+            </div>
+            <button id="closeChatWindow" class="text-white hover:text-gray-200">
+              <i class="ri-close-line text-xl"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Chat Messages -->
+        <div id="chatMessages" class="h-[400px] overflow-y-auto p-4 space-y-4">
+          <!-- Welcome Message -->
+          <div class="flex items-start">
+            <div
+              class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2 flex-shrink-0"
+            >
+              <i class="ri-customer-service-2-line text-primary"></i>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-3 max-w-[80%]">
+              <p>
+                Здравствуйте! 👋 Я консультант КотоБара. Как я могу помочь вам?
+              </p>
+            </div>
+          </div>
+          <!-- Quick Questions -->
+          <div class="flex flex-col space-y-2">
+            <button
+              class="quick-question bg-gray-50 hover:bg-gray-100 text-left px-4 py-2 rounded-lg text-gray-700"
+            >
+              Как усыновить котенка?
+            </button>
+            <button
+              class="quick-question bg-gray-50 hover:bg-gray-100 text-left px-4 py-2 rounded-lg text-gray-700"
+            >
+              Какие документы нужны?
+            </button>
+            <button
+              class="quick-question bg-gray-50 hover:bg-gray-100 text-left px-4 py-2 rounded-lg text-gray-700"
+            >
+              Как стать волонтером?
+            </button>
+          </div>
+        </div>
+        <!-- Chat Input -->
+        <div class="border-t p-4">
+          <form id="chatForm" class="flex items-center">
+            <input
+              type="text"
+              id="messageInput"
+              class="flex-1 border border-gray-200 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="Введите сообщение..."
+            />
+            <button
+              type="submit"
+              class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-opacity-90"
+            >
+              <i class="ri-send-plane-fill"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script id="chatScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatButton = document.getElementById("chatButton");
+        const chatWindow = document.getElementById("chatWindow");
+        const closeChatWindow = document.getElementById("closeChatWindow");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatForm = document.getElementById("chatForm");
+        const messageInput = document.getElementById("messageInput");
+        const quickQuestions = document.querySelectorAll(".quick-question");
+        // Toggle chat window
+        chatButton.addEventListener("click", () => {
+          chatWindow.classList.toggle("hidden");
+          if (!chatWindow.classList.contains("hidden")) {
+            messageInput.focus();
+          }
+        });
+        // Close chat window
+        closeChatWindow.addEventListener("click", () => {
+          chatWindow.classList.add("hidden");
+        });
+        // Handle quick questions
+        quickQuestions.forEach((button) => {
+          button.addEventListener("click", () => {
+            const question = button.textContent;
+            addUserMessage(question);
+            setTimeout(() => {
+              addBotResponse(question);
+            }, 500);
+          });
+        });
+        // Handle message submission
+        chatForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const message = messageInput.value.trim();
+          if (message) {
+            addUserMessage(message);
+            messageInput.value = "";
+            setTimeout(() => {
+              addBotResponse(message);
+            }, 500);
+          }
+        });
+        // Add user message to chat
+        function addUserMessage(message) {
+          const messageElement = document.createElement("div");
+          messageElement.className = "flex items-start justify-end";
+          messageElement.innerHTML = `
+      <div class="bg-primary text-white rounded-lg p-3 max-w-[80%]">
+      <p>${message}</p>
+      </div>
+      `;
+          chatMessages.appendChild(messageElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        // Add bot response to chat
+        function addBotResponse(userMessage) {
+          const responses = {
+            "Как усыновить котенка?":
+              "Для усыновления котенка необходимо: \n1. Выбрать понравившегося котенка \n2. Заполнить анкету \n3. Пройти собеседование \n4. Подготовить дом к приему питомца \n5. Подписать договор об ответственном содержании",
+            "Какие документы нужны?":
+              "Для усыновления котенка потребуется: \n- Паспорт \n- Документ о регистрации по месту жительства \n- Согласие всех совершеннолетних членов семьи",
+            "Как стать волонтером?":
+              "Чтобы стать волонтером: \n1. Заполните анкету на сайте \n2. Пройдите короткое обучение \n3. Выберите удобный график \nМы всегда рады новым помощникам! 🤗",
+          };
+          const messageElement = document.createElement("div");
+          messageElement.className = "flex items-start";
+          messageElement.innerHTML = `
+      <div class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
+      <i class="ri-customer-service-2-line text-primary"></i>
+      </div>
+      <div class="bg-gray-100 rounded-lg p-3 max-w-[80%]">
+      <p>${responses[userMessage] || "Спасибо за ваше сообщение! Наш специалист скоро свяжется с вами. А пока вы можете посмотреть наших котят или задать другой вопрос."}</p>
+      </div>
+      `;
+          chatMessages.appendChild(messageElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      });
+    </script>
+    <script id="smoothScrollScript">
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
